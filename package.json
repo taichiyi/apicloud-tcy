@@ -1,0 +1,84 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "apicloud-tcy",
+        "scope": null,
+        "escapedName": "apicloud-tcy",
+        "name": "apicloud-tcy",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Applications/XAMPP/xamppfiles/htdocs/thinkjs_test/test3"
+    ]
+  ],
+  "_from": "apicloud-tcy@latest",
+  "_id": "apicloud-tcy@0.0.4",
+  "_inCache": true,
+  "_location": "/apicloud-tcy",
+  "_nodeVersion": "7.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/apicloud-tcy-0.0.4.tgz_1493350438028_0.2871211508754641"
+  },
+  "_npmUser": {
+    "name": "taichiyi",
+    "email": "taichiyi@foxmail.com"
+  },
+  "_npmVersion": "4.5.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "apicloud-tcy",
+    "scope": null,
+    "escapedName": "apicloud-tcy",
+    "name": "apicloud-tcy",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/apicloud-tcy/-/apicloud-tcy-0.0.4.tgz",
+  "_shasum": "19ceab97130e13b38c715b12b774f64d188106a0",
+  "_shrinkwrap": null,
+  "_spec": "apicloud-tcy",
+  "_where": "/Applications/XAMPP/xamppfiles/htdocs/thinkjs_test/test3",
+  "author": {
+    "name": "taichiyi",
+    "email": "taichiyi@foxmail.com"
+  },
+  "bin": {
+    "tcy": "./bin/index.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "description": "apicloud-taichiyi-framework",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "19ceab97130e13b38c715b12b774f64d188106a0",
+    "tarball": "https://registry.npmjs.org/apicloud-tcy/-/apicloud-tcy-0.0.4.tgz"
+  },
+  "keywords": [
+    "apicloud",
+    "framework"
+  ],
+  "license": "MIT",
+  "main": "app.js",
+  "maintainers": [
+    {
+      "name": "taichiyi",
+      "email": "taichiyi@foxmail.com"
+    }
+  ],
+  "name": "apicloud-tcy",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
