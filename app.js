@@ -160,18 +160,7 @@ function create_win_frm(name, title) {
     create_frm(name + '_cont', title);
 }
 
-function calc_add(a, b) {
-    return a + b;
-}
-// create('photoBrowser', '图片浏览器');
-
 exports.add_frm = create_frm;
 exports.add_win = create_win;
 exports.add_wf = create_win_frm;
-exports.calc_add = calc_add;
-exports.abc = {
-    a: 1,
-    b: 2,
-    c: 3
-};
 
