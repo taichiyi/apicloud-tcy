@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>index_1</title>
+    <link rel="stylesheet" href="../css/gazer.css">
+    <script src="../js/require.js"></script>
+    <style>
+    body {
+        opacity: 0;
+    }
+
+    section {
+        background-color: #fff;
+        overflow: hidden;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="gazer-content" id="vue-el">
+        index_4
+    </div>
+
+<script>
+require([
+    '../js/vue',
+    '../js/common',
+], function(Vue) {
+    F.vue = {
+
+    };
+
+    var load = function() {
+        new_vue();
+
+        $('body').addClass('fadeIn');
+    };
+
+    var pre_data = function () {
+        
+    }
+
+    var loadData = function(callback) {
+        // TODO
+        pre_data();
+        callback();
+    };
+
+    function new_vue() {
+        F.vue = new Vue({
+            el: $('#vue-el')[0],
+            data: F.vue,
+            methods: {
+                openWin: F._openWin,
+                closeWin: F._closeWin,
+            }
+        });
+    }
+
+    Q.ready(function() {
+        loadData(function() {
+            load();
+        });
+    });
+});
+</script>
+</body>
+
+</html>

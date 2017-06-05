@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>index</title>
+    <link rel="stylesheet" href="../css/gazer.css">
+    <script src="../js/require.js"></script>
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    /* footer 模块 -start- */
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: #fff;
+        display: -webkit-box;
+        display: flex;
+        height: 55px;
+        padding-top: 2px;
+    }
+    
+    .footer:before {
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        z-index: 3;
+        height: 1px;
+        border-top: 1px solid #D9D9D9;
+        color: #D9D9D9;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+    
+    .footer__item {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #666;
+        -webkit-box-flex: 1;
+        flex: 1;
+    }
+    
+    .footer__item_active > * {
+        color: #22ac38 ;
+    }
+    
+    .footer__text {
+        font-size: 0.6rem;
+        margin-top: -2px;
+    }
+    
+    .footer__icon {
+        font-size: 1.2rem;
+        margin-bottom: -3px;
+    }
+    /* footer 模块 -end- */
+
+    .footer {
+        background-color: #212121;
+    }
+
+    .footer__item {
+        color: #a4a4a4;
+    }
+
+    .footer__item_active > * {
+        color: #fff ;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="gazer-content col-xs-24" id="vue-el">
+
+        <footer class="footer">
+            <div class="footer__item" 
+                v-bind:class="{ 'footer__item_active': 0 === nowIndex }" 
+                v-on:click="footer__item(0)">
+
+                <i class="iconfont footer__icon i-home04"></i>
+                <div class="footer__text">首页</div>
+            </div>
+            <div class="footer__item" 
+                v-bind:class="{ 'footer__item_active': 1 === nowIndex }" 
+                v-on:click="footer__item(1)">
+
+                <i class="iconfont footer__icon i-list03"></i>
+                <div class="footer__text">待办</div>
+            </div>
+            <div class="footer__item" 
+                v-bind:class="{ 'footer__item_active': 2 === nowIndex }" 
+                v-on:click="footer__item(2)">
+
+                <i class="iconfont footer__icon i-time09"></i>
+                <div class="footer__text">历史</div>
+            </div>
+            <div class="footer__item" 
+                v-bind:class="{ 'footer__item_active': 3 === nowIndex }" 
+                v-on:click="footer__item(3)">
+
+                <i class="iconfont footer__icon i-user09"></i>
+                <div class="footer__text">我的</div>
+            </div>
+        </footer>
+
+    </div>
+<script>
+require([
+    '../js/exit-app',
+    '../js/vue',
+    '../js/common',
+], function(exit_app, Vue) {
+    var statusBarHeight;
+    F.vue = {
+        nowIndex: 0,
+    };
+
+    // 打一次打开
+    var frist_open = {
+        index_1: true,
+        index_2: true,
+        index_3: true,
+        index_4: true,
+    };
+
+    var load = function() {
+        F.addEventListener_exit_app();
+
+        new_vue();
+
+        F.click_footer__item(0);
+    };
+
+    var pre_data = function() {
+        statusBarHeight = Q.statusBarHeight();
+        F.vue.statusBarHeight = statusBarHeight;
+    }
+
+    var loadData = function(callback) {
+        pre_data();
+        callback();
+    };
+
+    function new_vue() {
+        F.vue = new Vue({
+            el: $('#vue-el')[0],
+            data: F.vue,
+            methods: {
+                closeWin: F._closeWin,
+                footer__item: F.click_footer__item,
+            }
+        });
+    }
+
+    function show_and_hide(params) {
+        var i;
+
+        // 此windows的所有frame
+        var all_frm = ['index_1', 'index_2', 'index_3', 'index_4'];
+
+        for (i = 0; i < all_frm.length; i += 1) {
+            if (params.indexOf(all_frm[i]) === -1) {
+                // 无
+                console.log('隐藏：' + all_frm[i]);
+                api.setFrameAttr({
+                    name: all_frm[i],
+                    hidden: true,
+                });
+                api.setFrameGroupAttr({
+                    name: all_frm[i],
+                    hidden: true
+                });
+
+            } else {
+                // 有
+                console.log('显示：' + all_frm[i]);
+                api.setFrameAttr({
+                    name: all_frm[i],
+                    hidden: false,
+                });
+                api.setFrameGroupAttr({
+                    name: all_frm[i],
+                    hidden: false
+                });
+
+            }
+        }
+    }
+
+    // 监听双击退出应用
+    F.addEventListener_exit_app = function() {
+        //双击退出应用
+        if (Q.isPC()) return false;
+        exit_app();
+    };
+
+    function open__index_1() {
+        var frameName = 'index_1';
+
+
+        if (frist_open[frameName]) {
+            Q.openFrame({
+                name: frameName,
+                rect: {
+                    x: 0,
+                    y: 21 + statusBarHeight,
+                    w: api.winWidth,
+                    h: api.winHeight - 55 - (21 + statusBarHeight)
+                },
+            });
+
+            frist_open[frameName] = false;
+        } else {
+            show_and_hide([frameName, 'index_zoom', 'index_sign-in', 'index_location']);
+        }
+    }
+
+    function open__index_2() {
+        var frameName = 'index_2';
+
+        if (frist_open[frameName]) {
+            Q.openFrame({
+                name: frameName,
+                rect: {
+                    x: 0,
+                    y: 21 + statusBarHeight,
+                    w: api.winWidth,
+                    h: api.winHeight - 55 - (21 + statusBarHeight)
+                },
+            });
+
+            frist_open[frameName] = false;
+        } else {
+
+        }
+        show_and_hide([frameName]);
+    }
+
+    function open__index_3() {
+        var frameName = 'index_3';
+
+        if (frist_open[frameName]) {
+            Q.openFrame({
+                name: frameName,
+                rect: {
+                    x: 0,
+                    y: 21 + statusBarHeight,
+                    w: api.winWidth,
+                    h: api.winHeight - 55 - (21 + statusBarHeight)
+                },
+            });
+
+            frist_open[frameName] = false;
+        } else {
+
+        }
+        show_and_hide([frameName, 'index_3-openFrameGroup']);
+    }
+
+    function open__index_4() {
+        var frameName = 'index_4';
+
+        if (frist_open[frameName]) {
+            Q.openFrame({
+                name: frameName,
+                rect: {
+                    x: 0,
+                    y: 21 + statusBarHeight,
+                    w: api.winWidth,
+                    h: api.winHeight - 55 - (21 + statusBarHeight)
+                },
+            });
+
+            frist_open[frameName] = false;
+        } else {
+
+        }
+        show_and_hide([frameName]);
+    }
+
+    F.click_footer__item = function(index) {
+        F.vue.nowIndex = index;
+
+        switch (index) {
+            case 0:
+
+                open__index_1();
+                break;
+
+            case 1:
+
+                open__index_2();
+                break;
+
+            case 2:
+
+                open__index_3();
+                break;
+
+            case 3:
+
+                open__index_4();
+                break;
+
+            default:
+                // TODO
+                break;
+        }
+    }
+
+    Q.ready(function() {
+        loadData(function() {
+            load();
+        });
+    });
+});
+</script>
+</body>
+
+</html>
