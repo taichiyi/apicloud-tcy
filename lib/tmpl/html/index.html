@@ -131,10 +131,10 @@ require([
 
     // 打一次打开
     var frist_open = {
+        index_0: true,
         index_1: true,
         index_2: true,
         index_3: true,
-        index_4: true,
     };
 
     var load = function() {
@@ -170,7 +170,7 @@ require([
         var i;
 
         // 此windows的所有frame
-        var all_frm = ['index_1', 'index_2', 'index_3', 'index_4'];
+        var all_frm = ['index_0', 'index_1', 'index_2', 'index_3'];
 
         for (i = 0; i < all_frm.length; i += 1) {
             if (params.indexOf(all_frm[i]) === -1) {
@@ -208,8 +208,8 @@ require([
         exit_app();
     };
 
-    function open__index_1() {
-        var frameName = 'index_1';
+    function open__index_0() {
+        var frameName = 'index_0';
 
 
         if (frist_open[frameName]) {
@@ -227,6 +227,27 @@ require([
         } else {
             show_and_hide([frameName, 'index_zoom', 'index_sign-in', 'index_location']);
         }
+    }
+
+    function open__index_1() {
+        var frameName = 'index_1';
+
+        if (frist_open[frameName]) {
+            Q.openFrame({
+                name: frameName,
+                rect: {
+                    x: 0,
+                    y: 21 + statusBarHeight,
+                    w: api.winWidth,
+                    h: api.winHeight - 55 - (21 + statusBarHeight)
+                },
+            });
+
+            frist_open[frameName] = false;
+        } else {
+
+        }
+        show_and_hide([frameName]);
     }
 
     function open__index_2() {
@@ -247,32 +268,11 @@ require([
         } else {
 
         }
-        show_and_hide([frameName]);
+        show_and_hide([frameName, 'index_2-openFrameGroup']);
     }
 
     function open__index_3() {
         var frameName = 'index_3';
-
-        if (frist_open[frameName]) {
-            Q.openFrame({
-                name: frameName,
-                rect: {
-                    x: 0,
-                    y: 21 + statusBarHeight,
-                    w: api.winWidth,
-                    h: api.winHeight - 55 - (21 + statusBarHeight)
-                },
-            });
-
-            frist_open[frameName] = false;
-        } else {
-
-        }
-        show_and_hide([frameName, 'index_3-openFrameGroup']);
-    }
-
-    function open__index_4() {
-        var frameName = 'index_4';
 
         if (frist_open[frameName]) {
             Q.openFrame({
@@ -298,22 +298,22 @@ require([
         switch (index) {
             case 0:
 
-                open__index_1();
+                open__index_0();
                 break;
 
             case 1:
 
-                open__index_2();
+                open__index_1();
                 break;
 
             case 2:
 
-                open__index_3();
+                open__index_2();
                 break;
 
             case 3:
 
-                open__index_4();
+                open__index_3();
                 break;
 
             default:
